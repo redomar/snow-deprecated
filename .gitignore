@@ -19,6 +19,7 @@
 .DS_Store
 *.pem
 *.icloud
+tsconfig.ts*
 
 # debug
 npm-debug.log*
