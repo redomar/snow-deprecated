@@ -1,13 +1,21 @@
 import "tailwindcss/tailwind.css";
 import "@/styles/global.css";
+
+import Navigation from "@/components/navigation";
+import { withTRPC } from "@trpc/next";
+
 import type { AppProps } from "next/app";
+import type { AppRouter } from "@/backend/router";
+import { SessionProvider } from "next-auth/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <SessionProvider session={pageProps.session}>
+      <Navigation />
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
 }
-
-import { withTRPC } from "@trpc/next";
-import type { AppRouter } from "@/backend/router";
 
 export default withTRPC<AppRouter>({
   config({ ctx }) {
